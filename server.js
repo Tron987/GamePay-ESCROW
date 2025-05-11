@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 const userRoutes = require('./routes/userRoutes');
-const transactionRoutes = require('./routes/transactionRoutes');
+const escrowRoutes = require('./routes/escrowRoutes');
 // Load environment variables
 dotenv.config();
 
@@ -30,7 +30,7 @@ app.use(morgan('combined', { stream: accessLogStream })); // Logs to file
 app.use(morgan('dev')); // Logs to console
 
 app.use('/api/users', userRoutes);
-app.use('/api/transactions', transactionRoutes);
+app.use('/api/escrow', escrowRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })

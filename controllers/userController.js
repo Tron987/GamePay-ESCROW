@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
 const nodemailer = require('nodemailer');
+const Wallet = require('../models/Wallet');
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -17,6 +18,7 @@ exports.register = async (req, res) => {
     const user = new User({ name, email, phone, password: hashedPassword, role });
     await user.save();
     res.status(201).json({ message: 'User registered successfully' });
+    await Wallet.create({ userId: user._id });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
