@@ -1,0 +1,263 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
+.landing-container {
+  background-color: #0b0b0f;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  border-bottom: 1px solid #1a1a1d;
+}
+
+.logo {
+  height: 45px;
+}
+
+.nav-links a {
+  margin: 0 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00baff;
+}
+
+.btn {
+  background: #00baff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 60px;
+  
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-text h1 {
+  font-size: 56px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero-text .highlight {
+  color: #00baff;
+}
+
+.hero-text p {
+  font-size: 20px;
+  color: #d0d0d5;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #007bff, #00baff);
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+.hero-visual .visual {
+  width: 400px;
+}
+
+.how-it-works {
+  padding: 80px 60px;
+  text-align: center;
+  background-color: #111117;
+}
+
+.how-it-works h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.step {
+  background: #1a1a1f;
+  padding: 30px;
+  border-radius: 20px;
+  width: 220px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.step-number {
+  font-size: 48px;
+  color: #00baff;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.step p {
+  color: #d0d0d5;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.footer {
+  background-color: #0b0b0f;
+  color: #555;
+  text-align: center;
+  padding: 30px;
+  font-size: 14px;
+  border-top: 1px solid #1a1a1d;
+  margin-top: 40px;
+}
+.story-section {
+  padding: 80px 60px;
+  text-align: center;
+  background-color: #0e0e15;
+}
+
+.story-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.story-subtitle {
+  color: #d0d0d5;
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto 50px auto;
+}
+
+.story-section .steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.story-section .step {
+  background: #1a1a1f;
+  padding: 30px;
+  border-radius: 20px;
+  width: 280px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.story-section .step h3 {
+  color: #00baff;
+  margin-bottom: 10px;
+}
+
+.story-bottom {
+  margin-top: 60px;
+  font-size: 18px;
+  color: #d0d0d5;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .nav-links a {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .hero-visual .visual {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 30px;
+  }
+
+  .btn-primary,
+  .btn {
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+  }
+
+  .how-it-works,
+  .story-section {
+    padding: 60px 20px;
+  }
+
+  .steps,
+  .story-section .steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .step,
+  .story-section .step {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .story-subtitle,
+  .story-bottom {
+    font-size: 16px;
+    padding: 0 15px;
+  }
+
+  .story-title,
+  .how-it-works h2 {
+    font-size: 28px;
+  }
+}
