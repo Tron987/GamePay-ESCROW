@@ -5,6 +5,7 @@ const { OAuth2Client } = require('google-auth-library');
 const nodemailer = require('nodemailer');
 const Wallet = require('../models/Wallet');
 
+const axios = require('axios');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Register with email & password
@@ -43,17 +44,22 @@ exports.login = async (req, res) => {
 };
 
 // Login/Register with Google
+
+
 exports.googleLogin = async (req, res) => {
   const { tokenId } = req.body;
 
   try {
-    const ticket = await client.verifyIdToken({
-      idToken: tokenId,
-      audience: process.env.GOOGLE_CLIENT_ID,
+    // Get user info using the access token
+    const googleUser = await axios.get(`https://www.googleapis.com/oauth2/v3/userinfo`, {
+      headers: { Authorization: `Bearer ${tokenId}` }
     });
 
-    const { email_verified, email, name } = ticket.getPayload();
-    if (!email_verified) return res.status(400).json({ error: 'Email not verified by Google' });
+    const { email, name, email_verified } = googleUser.data;
+
+    if (!email_verified) {
+      return res.status(400).json({ error: 'Email not verified by Google' });
+    }
 
     let user = await User.findOne({ email });
     if (!user) {
@@ -65,10 +71,10 @@ exports.googleLogin = async (req, res) => {
     res.json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
 
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: 'Google login failed' });
   }
 };
-
 // Request password reset (send email)
 exports.requestPasswordReset = async (req, res) => {
   const { email } = req.body;
@@ -114,5 +120,24 @@ exports.resetPassword = async (req, res) => {
     res.json({ message: 'Password updated successfully' });
   } catch (err) {
     res.status(400).json({ error: 'Token expired or invalid' });
+  }
+};
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password');
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.getCurrentUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };

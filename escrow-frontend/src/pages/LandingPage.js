@@ -1,7 +1,6 @@
 import React from 'react';
-import './first.css';
+import '../css/first.css';
 import logo from '../assets/GP.png';
-
 function LandingPage() {
     
   return (
@@ -13,7 +12,7 @@ function LandingPage() {
           <a href="#story">The Story</a>
           <a href="#features">Features</a>
           <a href="#contact">Contact</a>
-          <a href="#get-started" className="btn">Get Started</a>
+          <a href="/login" className="btn">Get Started</a>
         </nav>
       </header>
 
@@ -21,7 +20,8 @@ function LandingPage() {
         <div className="hero-text">
           <h1>Secure Peer-to-Peer Payments with <br /><span>GamePay Escrow</span></h1>
           <p>Don't let trust issues stop your deals. GamePay Escrow holds funds safely until both sides are satisfied.</p>
-          <button className="btn-primary">Create Your Escrow</button>
+          <a href="/login" className="btn-primary">Create Your Escrow
+          </a>
         </div>
         <div className="hero-visual">
           <img src="https://www.shutterstock.com/image-illustration/secure-payment-design-260nw-589663346.jpg" alt="Escrow Steps" className="escrow-flow" />
